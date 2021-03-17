@@ -4,4 +4,8 @@ Rails.application.routes.draw do
   resources :users, except: [:edit, :update, :destroy] do
     resources :books, except: :show
   end
+
+  devise_scope :user do
+    root 'users/sessions#new'
+  end
 end
