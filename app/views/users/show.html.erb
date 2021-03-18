@@ -1,0 +1,7 @@
+<div>
+  <h1>Hi <%= current_user.username if user_signed_in? %></h1>
+  <% if user_signed_in? %>
+    <%= link_to  'Create a New Book', new_user_book_path(current_user.id), class: 'button is-primary' %>
+    <%= link_to  'Logout', destroy_user_session_path, class: 'button is-primary' %>
+  <% end %>
+</div>
