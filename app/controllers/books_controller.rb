@@ -14,7 +14,16 @@ class BooksController < ApplicationController
       render 'new'
     end
   end
-  
+
+  def show
+    @book = Book.find(params[:id])
+    render json: @book
+  end
+
+  def index
+    render json: Book.all
+  end
+
   private
 
   def book_params
