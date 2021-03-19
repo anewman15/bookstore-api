@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
-  get 'books/new'
-  get 'books/edit'
-  get 'books/index'
-  get 'books/show'
-  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
+  resources :books, only: :index
+
+  namespace :user do
+    resources :sessions, only: [:new, :create]
+  end
 
   resources :users, except: [:edit, :update, :destroy] do
     resources :books
-  end
-
-  devise_scope :user do
-    root 'users/sessions#new'
   end
 end
