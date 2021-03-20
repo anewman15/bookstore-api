@@ -1,7 +1,4 @@
-# frozen_string_literal: true
-
 class User::SessionsController < ApplicationController
-  # before_action :configure_sign_in_params, only: [:create]
   skip_before_action :verify_authenticity_token
 
   # GET /resource/sign_in
@@ -11,12 +8,12 @@ class User::SessionsController < ApplicationController
 
   # POST /resource/sign_in
   def create
-    @user = User.find_by(username: params[:username])
+    @user = User.find_by(username: sign_in_params[:username])
 
-    if @user&.valid_password?(params[:password])
+    if @user&.valid_password?(sign_in_params[:password])
       render json: @user, status: :created
     else
-      render json: { message: 'Invalid credentials'}, status: :unauthorized
+      render json: { message: 'Invalid credentials' }, status: :unauthorized
     end
   end
 
@@ -25,15 +22,9 @@ class User::SessionsController < ApplicationController
   #   super
   # end
 
-  private
+  # private
 
-  # def sign_in_params
-  #   params.require(:user).permit(:username, :password)
-  # end
-
-  protected
-
-  def after_sign_in_path_for(resource)
-    user_path(resource)
+  def sign_in_params
+    params.require(:user).permit(:username, :password)
   end
 end
