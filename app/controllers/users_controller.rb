@@ -7,9 +7,9 @@ class UsersController < ApplicationController
     if @user.save
       render json: @user, status: :ok
     elsif User.exists?(username: @user.username) || User.exists?(email: @user.email)
-      render json: { message: 'User exists already' }
+      render json: { message: 'User exists already' }, status: :unprocessable_entity
     elsif @user.password != @user.password_confirmation
-      render json: { message: 'Passwords mismatch' }
+      render json: { message: 'Passwords mismatch' }, status: :unprocessable_entity
     else
       render json: { message: 'User not created' }, status: :unprocessable_entity
     end
