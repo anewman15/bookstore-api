@@ -17,7 +17,6 @@ class BooksController < ApplicationController
 
   def index
     @user_books = User.find_by(username: params[:username]).books
-    render json: @user_books
   end
 
   private
