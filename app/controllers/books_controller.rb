@@ -21,6 +21,17 @@ class BooksController < ApplicationController
     render :index, status: :ok
   end
 
+  def destroy
+    return render json: { message: 'Book does not exist' }, status: :not_found unless Book.exists?(id: params[:book_id])
+
+    @book = Book.find(params[:book_id])
+    if @book.destroy
+      render json: { message: 'Book deleted successfully' }, status: :ok
+    else
+      render json: { message: 'Book could not be deleted' }, status: :bad_request
+    end
+  end
+
   private
 
   def create_book_params
