@@ -1,4 +1,7 @@
 class Book < ApplicationRecord
   validates :title, presence: true
-  validates :pages, presence: true
+  validates :category, presence: true
+  validates :user_id, presence: true
+
+  belongs_to :user
 end
