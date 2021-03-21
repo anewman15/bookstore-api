@@ -25,6 +25,9 @@ class BooksController < ApplicationController
     return render json: { message: 'Book does not exist' }, status: :not_found unless Book.exists?(id: params[:book_id])
 
     @book = Book.find(params[:book_id])
+
+    return render json: { message: 'Unauthorized user. Book cannot be deleted.' }, status: :unauthorized unless @book.user.username == params[:username]
+
     if @book.destroy
       render json: { message: 'Book deleted successfully' }, status: :ok
     else
