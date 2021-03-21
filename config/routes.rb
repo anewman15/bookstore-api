@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :books, only: [:index, :create, :update, :destroy]
+  resources :users, except: [:edit, :update, :destroy]
 
   namespace :user do
     resources :sessions, only: [:new, :create]
   end
 
-  resources :users, except: [:edit, :update, :destroy]
+  resources :books, only: [:index, :create, :update, :destroy], defaults: { format: :json }
 end
