@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   end
 
   resources :books, only: [:index, :create, :update, :destroy], defaults: { format: :json }
+  resource :books, only: [:destroy, :update]
 end
