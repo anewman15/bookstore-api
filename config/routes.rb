@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :users, except: [:edit, :update, :destroy]
+
+  namespace :user do
+    resources :sessions, only: [:new, :create]
+  end
+
+  resources :books, only: [:index, :create, :update, :destroy], defaults: { format: :json }
+  resource :books, only: [:destroy, :update]
 end
