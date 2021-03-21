@@ -2,11 +2,11 @@ class BooksController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    user = User.find_by(username: book_params[:username])
+    user = User.find_by(username: create_book_params[:username])
     if user
-      @book = Book.new(user_id: user.id, title: book_params[:title], category: book_params[:category])
+      @book = Book.new(user_id: user.id, title: create_book_params[:title], category: create_book_params[:category])
       if @book.save
-        render json: @book, status: :ok
+        render :created, status: :ok
       else
         render json: { message: 'Book not created' }
       end
