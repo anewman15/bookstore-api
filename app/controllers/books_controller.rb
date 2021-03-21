@@ -2,9 +2,9 @@ class BooksController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    user = User.find_by(username: create_book_params[:username])
+    user = User.find_by(username: params[:username])
     if user
-      @book = Book.new(user_id: user.id, title: create_book_params[:title], category: create_book_params[:category])
+      @book = user.books.build(create_book_params)
       if @book.save
         render :created, status: :ok
       else
@@ -51,7 +51,7 @@ class BooksController < ApplicationController
   private
 
   def create_book_params
-    params.require(:book).permit(:username, :title, :category)
+    params.require(:book).permit(:title, :author, :category)
   end
 
   def update_book_params
