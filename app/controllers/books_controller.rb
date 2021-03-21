@@ -8,10 +8,10 @@ class BooksController < ApplicationController
       if @book.save
         render :created, status: :ok
       else
-        render json: { message: 'Book not created' }
+        render json: { message: 'Book not created' }, status: :not_implemented
       end
     else
-      render json: { message: 'User does not exist. Please sign up' }
+      render json: { message: 'User does not exist. Please sign up' }, status: :unauthorized
     end
   end
 
