@@ -3,10 +3,11 @@ class CreateBooks < ActiveRecord::Migration[6.0]
     create_table :books do |t|
       t.string :title
       t.string :author
-      t.integer :pages
       t.string :category
-      t.boolean :completed
+      t.integer :pages
+      t.integer :current_page
       t.integer :current_chapter
+      t.boolean :completed
       t.integer :user_id, index: true, foreign_key: true
 
       t.timestamps

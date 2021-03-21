@@ -18,10 +18,11 @@ ActiveRecord::Schema.define(version: 2021_03_17_092738) do
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "author"
-    t.integer "pages"
     t.string "category"
-    t.boolean "completed"
+    t.integer "pages"
+    t.integer "current_page"
     t.integer "current_chapter"
+    t.boolean "completed"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
