@@ -16,7 +16,9 @@ class BooksController < ApplicationController
   end
 
   def index
-    @user_books = User.find_by(username: params[:username]).books
+    @user = User.find_by(username: params[:username])
+    @user_books = @user.books
+    render :index, status: :ok
   end
 
   private
