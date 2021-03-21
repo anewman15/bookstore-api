@@ -21,6 +21,17 @@ class BooksController < ApplicationController
     render :index, status: :ok
   end
 
+  def update
+    return render json: { message: 'Book does not exist' }, status: :not_found unless Book.exists?(id: params[:book][:book_id])
+
+    @book = Book.find(params[:book][:book_id])
+
+    return render json: { message: 'Unauthorized user. Book cannot be updated.' }, status: :unauthorized unless @book.user.username == params[:username]
+
+    @book.update!(update_book_params)
+    render :updated
+  end
+
   def destroy
     return render json: { message: 'Book does not exist' }, status: :not_found unless Book.exists?(id: params[:book_id])
 
@@ -39,5 +50,9 @@ class BooksController < ApplicationController
 
   def create_book_params
     params.require(:book).permit(:username, :title, :category)
+  end
+
+  def update_book_params
+    params.require(:book).permit(:title, :author, :pages, :category, :current_chapter, :completed)
   end
 end
