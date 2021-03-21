@@ -16,6 +16,8 @@ class BooksController < ApplicationController
   end
 
   def index
+    return render json: { message: 'User does not exist. Please sign up' } unless User.exists?(username: params[:username])
+
     @user = User.find_by(username: params[:username])
     @user_books = @user.books
     render :index, status: :ok
