@@ -1,5 +1,5 @@
 # Bookstore API
-JSON API created using Rails for Bookstore frontend
+JSON API created using Rails for book-tracker frontend
 
 
 ## App Screenshot
@@ -10,19 +10,11 @@ JSON API created using Rails for Bookstore frontend
 * Ruby v 2.7.1
 * Rails v 6.0.3.3
 * Devise
-* Bulma
-* Simple Form
 * PostgreSQL
-* RSpec
-* Capybara
-* FactoryBot
-* Faker Gem
-
-## Database ERD
-![Entity Relational Diagram](./erd.png)
+* Jbuilder
 
 ## Live Version
-Live on [Heroku](https://anewman15-bookstore-api.herokuapp.com/)
+Live on [Heroku](https://anewman15-book-tracker-api.herokuapp.com/)
 
 ## Deployment
 
@@ -55,9 +47,7 @@ Start server with:
 ```
 
 1. Open `http://localhost:3000/` in your browser
-2. Sign up for an account and login
-3. Create activities and groups
-4. Play around and you'll see all your activities and groups listed
+2. User Postman to create users, create, read, update and delete books for a user
 
 ## Author
 👤 **Abdullah Numan**

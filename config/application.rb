@@ -15,6 +15,6 @@ module BookstoreApi
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
-    config.hosts << ".anewman15-book-tracker.netlify.app"
+    config.hosts << "anewman15-book-tracker-api.herokuapp.com"
   end
 end
