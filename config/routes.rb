@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   resources :books, only: [:index, :create, :update, :destroy], defaults: { format: :json }
   resource :books, only: [:destroy, :update]
 
-  root to: 'books#index'
+  root to: redirect('https://anewman15-book-tracker.netlify.app/')
 end
